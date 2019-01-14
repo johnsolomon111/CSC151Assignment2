@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="container" style="align-content: center; ">Add Student</h1>
+<br>
+<div class="container" style="align-content: center;">
+<form method="POST" action="{{ url_for('add') }}">  
+  {{ form.csrf_token }}
+
+    <div>
+      {{ render_field(form.firstname, placeholder=form.firstname.label.text, class="form-control input-sm form-control-lg is-invalid", style="height: 40px; width: 65%;") }}
+    </div>
+    <div>
+      {{ render_field(form.lastname, placeholder=form.lastname.label.text, class="form-control input-sm form-control-lg is-invalid", style="height: 40px; width: 65%;") }}
+    </div>
+    <div>
+      {{ render_field(form.gender, placeholder=form.gender.label.text, class="form-control input-sm form-control-lg is-invalid", style="height: 40px; width: 65%;") }}
+    </div>
+    <div>
+      {{ render_field(form.course, placeholder=form.course.label.text, class="form-control input-sm form-control-lg is-invalid", style="height: 40px; width: 65%;") }} 
+    </div>
+    <div>
+      {{ render_field(form.year, placeholder=form.year.label.text, class="form-control input-sm form-control-lg is-invalid", style="height: 40px; width: 65%;") }}
+    </div>
+    <br>
+    <input type="submit" value="Submit" class="btn btn-primary">
+    <a href="/course" class="btn btn-default">Cancel</a>
+</form>
+</div>
+{% endblock %}

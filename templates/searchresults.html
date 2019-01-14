@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% from '_formhelper.html' import search_field %}
+
+{% block content %}
+<h1 class="container" style="align-content: center; ">CRUD Application</h1>
+<br>
+<div class="btn-toolbar">
+  <a href="/" class="btn btn-default" style="margin-left: 15px;">Student List</a>
+
+  <form class="form-inline my-2 my-md-0" action="{{ url_for('search') }}" method="POST">
+        {{ searchForm.csrf_token }}
+        <!-- <input class="form-control" type="text" placeholder="Search" style="width: 30%;"> -->
+        <div class="form-control">
+          {{ search_field(searchForm.student, placeholder="Search Student", style="padding: 0; border: transparent;") }}
+        </div>
+        <button class="btn btn-default" style="margin-left: 15px;" type="submit">Search</button>
+        
+  </form>
+
+</div>
+	<div class="well" style="margin: 10px;">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Gender</th>
+          <th>Course</th>
+          <th>Year</th>
+          <th style="width: 40px;"></th>
+        </tr>
+      </thead>
+      <tbody>
+      	{% for results in result %}
+        <tr>
+          <td>{{ results.id }}</td>
+          <td>{{ results.firstname }}</td>
+          <td>{{ results.lastname  }}</td>
+          <td>{{ results.gender }}</td>
+          <td>{{ results.course }}</td>
+          <td>{{ results.year }}</td>
+          <td>
+          	<div>
+              <a href="/update/{{ results.id }}" class="btn btn-primary">EDIT</a> 
+              <a href="/delete/{{ results.id }}" class="btn btn-danger" onclick="return confirm('Are you sure to want to delete?')">X</i></a>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="/">Home</a>
+</div>
+
+{% endblock %}

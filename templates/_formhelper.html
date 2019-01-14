@@ -1,0 +1,8 @@
+{% macro render_field(field) %}
+  {{ field.label }}
+  {{ field(**kwargs)|safe }}
+{% endmacro %}
+
+{% macro search_field(search) %}
+	{{ search(**kwargs)|safe }}
+{% endmacro %}
